@@ -5,7 +5,7 @@ Vodafone Frontend Technical Test
 
 Clone repo into your web dir and point the web root to the __app/__ folder. 
 
-For production builds. Run __npm install__ from root, then run _grunt build_**. The web root should then be changed to __dist/__
+For production builds. Run __npm install__ from root, then run __grunt build__. The web root should then be changed to __dist/__
 
 For unit testing, make sure you have first ran the __npm install__, then run __grunt test__
 
