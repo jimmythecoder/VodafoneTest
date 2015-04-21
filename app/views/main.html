@@ -1,0 +1,60 @@
+<section class="row">
+	<div class="col-xs-12 text-center">
+		<h1>{{celebrityRichList.pageTitleH1}}</h1>
+
+		<h2>{{celebrityRichList.pageTitleH2}}</h2>
+
+		<p>{{celebrityRichList.description}}</p>
+
+		<p>Reference: <a ng-href="{{celebrityRichList.referenceLink}}">{{celebrityRichList.referenceLink}}</a></p>
+	</div>
+</section>
+<section class="row">
+	<div class="col-xs-12">
+		<div class="well well-lg">
+			<form method="get" action="#" novalidate>
+				<div class="row">
+				  <div class="col-xs-12 col-md-6 form-group">
+				    <label for="country">Birthplace:</label>
+				    <select class="form-control" id="country" ng-options="value for value in celebrityCountries" ng-model="search.filters.country">
+				    	<option value="">Show all</option>
+				    </select>
+				  </div>
+				  <div class="col-xs-12 col-md-6 form-group">
+				    <label for="currency">Currency Converter:</label>
+					<select class="form-control" id="currency" ng-options="option.value as option.label for option in currencies" ng-model="search.currency">
+				    </select>
+				  </div>
+				  <div class="col-xs-12 col-md-6 form-group">
+				    <label for="search">Search:</label>
+				    <input type="search" class="form-control" id="search" placeholder="Search" ng-model="search.filters.searchText">
+				  </div>
+				  <div class="col-xs-12 col-md-6 form-group">
+				    <label for="orderBy">Order By:</label>
+				    <select class="form-control" id="orderBy" ng-options="option.value as option.label for option in orderByOptions" ng-model="search.orderBy">
+				    </select>
+				  </div>
+				</div>
+			</form>
+
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="panel panel-primary" ng-repeat="item in filteredValues=(celebrityRichList.celebrityList | filter:{name: search.filters.searchText || '',country: search.filters.country || ''} | orderBy:search.orderBy)">
+					  <div class="panel-heading text-center">No: {{item.rank}}</div>
+					  <div class="panel-body">
+					    <ul class="list-group">
+						  <li class="list-group-item text-center">Name: {{item.name}}</li>
+						  <li class="list-group-item text-center">Net Worth: <span ng-bind-html="item.netWorth|convertCurrency:search.currency"></span></li>
+						  <li class="list-group-item text-center">Age: {{item.age}}</li>
+						  <li class="list-group-item text-center">Country Of Birth: {{item.country}}</li>
+						</ul>
+					  </div>
+					</div>
+				</div>
+				<div class="col-xs-12" ng-if="!filteredValues.length">
+					<p class="alert alert-info text-center">No Results Found</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

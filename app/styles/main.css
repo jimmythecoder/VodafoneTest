@@ -1,0 +1,15 @@
+body{
+	background-color: #f7fafd;
+	padding: 2em;
+	color: #666;
+}
+
+.container{
+	background-color: #FFF;
+}
+
+@media (max-width:768px){
+	body{
+		padding: 0;
+	}
+}
